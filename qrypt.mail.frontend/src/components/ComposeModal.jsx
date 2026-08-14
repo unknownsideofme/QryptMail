@@ -104,35 +104,37 @@ export default function ComposeModal({ open, onClose }) {
           variant="outlined"
           value={to}
           onChange={(e) => setTo(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-          InputProps={{
-            endAdornment: (
-              <Button 
-                onClick={() => setShowCcBcc(!showCcBcc)}
-                sx={{ 
-                  textTransform: 'none', 
-                  fontSize: '11px', 
-                  fontWeight: 700, 
-                  color: 'var(--accent-primary)',
-                  backgroundColor: 'var(--bg-app)',
-                  boxShadow: 'var(--shadow-outset-sm)',
-                  px: 1.5,
-                  py: 0.5,
-                  borderRadius: '6px',
-                  '&:hover': { backgroundColor: 'var(--bg-app)', boxShadow: 'var(--shadow-outset)' },
-                  '&:active': { boxShadow: 'var(--shadow-inset-sm)' }
-                }}
-              >
-                CC/BCC
-              </Button>
-            ),
-            sx: {
-              borderRadius: '12px',
-              backgroundColor: 'var(--bg-app)',
-              boxShadow: 'var(--shadow-inset)',
-              '& fieldset': { border: 'none' },
-              '&:hover fieldset': { border: 'none' },
-              '&.Mui-focused fieldset': { border: 'none' }
+          slotProps={{
+            inputLabel: { shrink: true },
+            input: {
+              endAdornment: (
+                <Button 
+                  onClick={() => setShowCcBcc(!showCcBcc)}
+                  sx={{ 
+                    textTransform: 'none', 
+                    fontSize: '11px', 
+                    fontWeight: 700, 
+                    color: 'var(--accent-primary)',
+                    backgroundColor: 'var(--bg-app)',
+                    boxShadow: 'var(--shadow-outset-sm)',
+                    px: 1.5,
+                    py: 0.5,
+                    borderRadius: '6px',
+                    '&:hover': { backgroundColor: 'var(--bg-app)', boxShadow: 'var(--shadow-outset)' },
+                    '&:active': { boxShadow: 'var(--shadow-inset-sm)' }
+                  }}
+                >
+                  CC/BCC
+                </Button>
+              ),
+              sx: {
+                borderRadius: '12px',
+                backgroundColor: 'var(--bg-app)',
+                boxShadow: 'var(--shadow-inset)',
+                '& fieldset': { border: 'none' },
+                '&:hover fieldset': { border: 'none' },
+                '&.Mui-focused fieldset': { border: 'none' }
+              }
             }
           }}
         />
@@ -146,7 +148,7 @@ export default function ComposeModal({ open, onClose }) {
               variant="outlined"
               value={cc}
               onChange={(e) => setCc(e.target.value)}
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '12px',
@@ -165,7 +167,7 @@ export default function ComposeModal({ open, onClose }) {
               variant="outlined"
               value={bcc}
               onChange={(e) => setBcc(e.target.value)}
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '12px',
@@ -187,7 +189,7 @@ export default function ComposeModal({ open, onClose }) {
           variant="outlined"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
-          InputLabelProps={{ shrink: true }}
+          slotProps={{ inputLabel: { shrink: true } }}
           sx={{
             '& .MuiOutlinedInput-root': {
               borderRadius: '12px',
@@ -209,7 +211,7 @@ export default function ComposeModal({ open, onClose }) {
           variant="outlined"
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          InputLabelProps={{ shrink: true }}
+          slotProps={{ inputLabel: { shrink: true } }}
           sx={{
             '& .MuiOutlinedInput-root': {
               borderRadius: '12px',

@@ -1,0 +1,16 @@
+{
+  "name": "qryptmail-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "qrypt.mail.frontend",
+    "qrypt.mail.server"
+  ],
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

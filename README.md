@@ -8,8 +8,8 @@ QryptMail is a secure, modern webmail client built with a progressive loading ar
 
 The project is structured as a monorepo containing two decoupled packages:
 
-- [qrypt.mail.server](file:///Users/debanjan/Desktop/CodeBook/QryptMail/qrypt.mail.server): A Node.js and Express backend API service managing OAuth credentials, database connections, and Google/Microsoft mail provider integrations.
-- [qrypt.mail.frontend](file:///Users/debanjan/Desktop/CodeBook/QryptMail/qrypt.mail.frontend): A React and Vite single-page application (SPA) rendering a neumorphic desktop dashboard interface.
+- [qrypt.mail.server](./QryptMail/qrypt.mail.server): A Node.js and Express backend API service managing OAuth credentials, database connections, and Google/Microsoft mail provider integrations.
+- [qrypt.mail.frontend](./QryptMail/qrypt.mail.frontend): A React and Vite single-page application (SPA) rendering a neumorphic desktop dashboard interface.
 
 ---
 
@@ -54,3 +54,19 @@ To maintain a fast and light payload footprint, data is retrieved lazily on dema
    ```
 
 3. Open your browser and navigate to `http://localhost:5175`.
+
+---
+
+## Testing
+
+### 1. Run Unit Tests
+- **Backend (Jest)**: Run `npm test` inside `qrypt.mail.server/`
+- **Frontend (Vitest)**: Run `npx vitest run` inside `qrypt.mail.frontend/`
+
+### 2. Run End-to-End Tests (Playwright)
+From the workspace root directory, run:
+```bash
+npm install
+npm run test:e2e
+```
+Playwright will automatically launch both the backend API and frontend Vite servers, run E2E scenarios inside a system Chrome instance headlessly, and tear down the processes cleanly.
