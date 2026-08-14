@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm --prefix qrypt.mail.server install
 
     - name: Run backend integration tests
       env:

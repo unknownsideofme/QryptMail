@@ -27,7 +27,10 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm --prefix qrypt.mail.frontend install
+        npm --prefix qrypt.mail.server install
+        npm install
 
     - name: Install Playwright Chrome Browser
       run: npx playwright install chrome --with-deps

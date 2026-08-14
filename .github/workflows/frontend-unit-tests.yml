@@ -21,7 +21,7 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm --prefix qrypt.mail.frontend install
 
     - name: Run frontend unit tests
       run: npm --prefix qrypt.mail.frontend run test
