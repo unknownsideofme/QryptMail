@@ -1,16 +1,36 @@
-# React + Vite
+# QryptMail Frontend Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React 19 and Vite single-page application (SPA) rendering the QryptMail neumorphic user interface. The frontend is built to run in two modes: **Demo Mode** (offline mock data) and **Authenticated Mode** (real-time sync with the QryptMail backend server).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technical Features
 
-## React Compiler
+- **Progressive State Preservation**: The React state context (`EmailContext`) manages loading states, paginated loads, and background folder changes. It preserves loaded email detail bodies and attachments between folder syncs to avoid redundant API hits.
+- **Base64 Attachment Uploader**: The compose panel converts local file uploads to base64 using a standard Web API `FileReader` and packages them into the outgoing JSON payload.
+- **Sandboxed HTML Iframe**: Renders rich text and HTML layouts inside a sandboxed `<iframe>` to prevent style leaks (e.g., email styles overriding main dashboard styles) and runs a dynamic height resizer to prevent nested scrollbars.
+- **Neumorphic UI tokens**: Leverages Material-UI (MUI v9) and custom CSS variables to render a premium neumorphic design.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## Folder Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- `src/context/`: Contains the global `EmailContext` managing routing endpoints, local state preservation, and progressive pagination hooks.
+- `src/components/`:
+  - `Login`: Standard login panel interface.
+  - `Sidebar`: Neumorphic folder navigation sidebar.
+  - `FolderPanel`: The scrollable paginated list of email items.
+  - `DetailPanel`: The sandboxed email reader.
+  - `ComposeModal`: The composition panel supporting CC/BCC toggles and file attachment selections.
+  - `AttachmentCard`: The lazy attachment streaming downloader card.
+
+---
+
+## Running Tests
+
+Automated testing is configured using Vitest and jsdom.
+
+- **Run unit tests**:
+  ```bash
+  npx vitest run
+  ```
