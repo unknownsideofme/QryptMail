@@ -7,6 +7,10 @@
     "qrypt.mail.frontend",
     "qrypt.mail.server"
   ],
+  "supportedArchitectures": {
+    "os": ["darwin", "linux"],
+    "cpu": ["x64", "arm64"]
+  },
   "scripts": {
     "test:e2e": "playwright test"
   },
