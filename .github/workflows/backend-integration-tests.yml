@@ -1,0 +1,37 @@
+name: Backend Integration Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run backend integration tests
+      env:
+        DB_TYPE: mongo
+        MONGODB_URI: mongodb://localhost:27017/qryptmail
+        JWT_SECRET: testsecret
+      run: npm --prefix qrypt.mail.server run test tests/integration
