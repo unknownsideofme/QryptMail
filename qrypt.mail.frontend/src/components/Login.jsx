@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Card, Typography, Button, Grid, CircularProgress, Alert } from '@mui/material';
-import LogoIcon from '@mui/icons-material/Mail';
+import qryptMailLogo from '../assets/logo.svg';
+import qryptMailTextLogo from '../assets/text.svg';
 import GoogleIcon from '@mui/icons-material/Google';
 import MicrosoftIcon from '@mui/icons-material/Microsoft';
 import { useEmails } from '../context/EmailContext';
@@ -135,20 +136,18 @@ export default function Login() {
             mb: 2.5
           }}
         >
-          <LogoIcon sx={{ fontSize: 30 }} />
+          <img src={qryptMailLogo} alt="QryptMail Logo" style={{ width: 34, height: 34 }} />
         </Box>
 
-        <Typography 
-          variant="h5" 
-          sx={{ 
-            fontWeight: 800, 
-            color: 'var(--text-primary)',
-            fontSize: '24px',
-            mb: 0.5
-          }}
-        >
-          QryptMail.com
-        </Typography>
+        <img 
+          src={qryptMailTextLogo} 
+          alt="QryptMail" 
+          style={{ 
+            height: 30, 
+            objectFit: 'contain',
+            marginBottom: 10
+          }} 
+        />
         <Typography 
           variant="body2" 
           sx={{ 

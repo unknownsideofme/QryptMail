@@ -7,7 +7,7 @@ import StarredIcon from '@mui/icons-material/Star';
 import TrashIcon from '@mui/icons-material/Delete';
 import HelpIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LogoIcon from '@mui/icons-material/Mail';
+import qryptMailLogo from '../assets/logo.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useEmails } from '../context/EmailContext';
 
@@ -76,7 +76,7 @@ export default function Sidebar({ onComposeClick }) {
             }
           }}
         >
-          <LogoIcon sx={{ fontSize: 26 }} />
+          <img src={qryptMailLogo} alt="QryptMail Logo" style={{ width: 28, height: 28 }} />
         </Box>
 
         {/* Navigation Items */}

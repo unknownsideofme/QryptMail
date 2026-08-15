@@ -82,13 +82,17 @@ function startBackendServer() {
     });
   }
 }
-
 function createWindow() {
+  const iconPath = app.isPackaged
+    ? path.join(__dirname, 'frontend-dist/logo.svg')
+    : path.join(__dirname, '../qrypt.mail.frontend/public/logo.svg');
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 850,
     minWidth: 1000,
     minHeight: 700,
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
