@@ -42,17 +42,26 @@ export default function Login() {
   const handleOAuthRedirect = (provider) => {
     setError('');
     setIsLoading(true);
-    setLoadingMessage(`Redirecting to secure login via ${provider === 'google' ? 'Google' : 'Microsoft'}...`);
     
-    const serverUrl = 'http://localhost:5001';
-    const origin = window.location.origin;
-    if (provider === 'google') {
-      window.location.href = `${serverUrl}/api/auth/google?origin=${encodeURIComponent(origin)}`;
-    } else if (provider === 'microsoft') {
-      window.location.href = `${serverUrl}/api/auth/microsoft?origin=${encodeURIComponent(origin)}`;
+    const serverUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
+    const isElectron = typeof window !== 'undefined' && window.electronAPI && window.electronAPI.isElectron;
+    
+    if (isElectron) {
+      setLoadingMessage(`Please complete secure login via ${provider === 'google' ? 'Google' : 'Microsoft'} in your web browser...`);
+      const desktopOrigin = 'qryptmail://auth';
+      const authUrl = `${serverUrl}/api/auth/${provider}?origin=${encodeURIComponent(desktopOrigin)}`;
+      window.electronAPI.openExternal(authUrl);
     } else {
-      setError(`Authentication for provider "${provider}" is not supported.`);
-      setIsLoading(false);
+      setLoadingMessage(`Redirecting to secure login via ${provider === 'google' ? 'Google' : 'Microsoft'}...`);
+      const origin = window.location.origin;
+      if (provider === 'google') {
+        window.location.href = `${serverUrl}/api/auth/google?origin=${encodeURIComponent(origin)}`;
+      } else if (provider === 'microsoft') {
+        window.location.href = `${serverUrl}/api/auth/microsoft?origin=${encodeURIComponent(origin)}`;
+      } else {
+        setError(`Authentication for provider "${provider}" is not supported.`);
+        setIsLoading(false);
+      }
     }
   };
 

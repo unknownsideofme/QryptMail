@@ -218,7 +218,7 @@ export const EmailProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState('all'); // all, read, unread
 
-  const BASE_URL = 'http://localhost:5001';
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
 
   // App Auth state & config
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -755,6 +755,35 @@ export const EmailProvider = ({ children }) => {
   const getUnreadCount = (folderName) => {
     return emails.filter(email => email.folder === folderName && email.isUnread).length;
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.electronAPI && window.electronAPI.onAuthCallback) {
+      window.electronAPI.onAuthCallback((url) => {
+        try {
+          console.log('Received auth callback URL inside Electron:', url);
+          const parsedUrl = new URL(url);
+          const params = parsedUrl.searchParams;
+          const success = params.get('success');
+          const failure = params.get('failure');
+          const errorMsg = params.get('error');
+
+          if (success === 'true') {
+            const appToken = params.get('appToken');
+            const email = params.get('email');
+            const name = params.get('name');
+            const userId = params.get('userId');
+            if (appToken && email) {
+              loginUnipile(appToken, email, name, userId);
+            }
+          } else if (failure === 'true') {
+            console.error('OAuth callback failed inside Electron:', errorMsg);
+          }
+        } catch (err) {
+          console.error('Failed to parse Electron auth callback URL:', err);
+        }
+      });
+    }
+  }, []);
 
   return (
     <EmailContext.Provider value={{

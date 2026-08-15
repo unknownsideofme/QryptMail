@@ -1,0 +1,62 @@
+{
+  "name": "qrypt-mail-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder"
+  },
+  "description": "Secure desktop email client",
+  "author": "debanjan",
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.qryptmail.app",
+    "productName": "QryptMail",
+    "electronVersion": "31.7.7",
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      {
+        "from": "../qrypt.mail.frontend/dist",
+        "to": "frontend-dist"
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "../qrypt.mail.server",
+        "to": "qrypt.mail.server",
+        "filter": [
+          "**/*",
+          "!node_modules",
+          "!tests",
+          "!.git",
+          "!.env"
+        ]
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
+  }
+}

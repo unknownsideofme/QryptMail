@@ -5,16 +5,28 @@
   "type": "module",
   "workspaces": [
     "qrypt.mail.frontend",
-    "qrypt.mail.server"
+    "qrypt.mail.server",
+    "qrypt.mail.desktop"
   ],
   "supportedArchitectures": {
-    "os": ["darwin", "linux"],
-    "cpu": ["x64", "arm64"]
+    "os": [
+      "darwin",
+      "linux"
+    ],
+    "cpu": [
+      "x64",
+      "arm64"
+    ]
   },
   "scripts": {
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "desktop:start": "npm run start --workspace=qrypt-mail-desktop",
+    "desktop:build": "npm run build --workspace=email_ui && npm run build --workspace=qrypt-mail-desktop"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0"
+    "@playwright/test": "^1.49.0",
+    "7zip-bin": "^5.2.0",
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
   }
 }

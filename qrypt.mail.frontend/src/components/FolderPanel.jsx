@@ -3,6 +3,7 @@ import { Box, Typography, TextField, InputAdornment, IconButton, Button, Circula
 import SearchIcon from '@mui/icons-material/Search';
 import FilterIcon from '@mui/icons-material/FilterList';
 import CreateIcon from '@mui/icons-material/Create';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import { useEmails } from '../context/EmailContext';
 import FolderItem from './FolderItem';
 
@@ -88,6 +89,29 @@ export default function FolderPanel({ onComposeClick }) {
             >
               Compose
             </Button>
+            <IconButton 
+              className="folder-action-btn" 
+              size="small" 
+              onClick={() => fetchEmails(false)}
+              disabled={isLoadingEmails}
+              sx={{ 
+                color: 'var(--text-secondary)',
+                backgroundColor: 'var(--bg-app)',
+                boxShadow: 'var(--shadow-outset)',
+                borderRadius: '8px',
+                width: 32,
+                height: 32,
+                '&:hover': { backgroundColor: 'var(--bg-app)', boxShadow: 'var(--shadow-outset)', color: 'var(--text-primary)' },
+                '&:active': { boxShadow: 'var(--shadow-inset)' },
+                '&:disabled': { opacity: 0.7 }
+              }}
+            >
+              {isLoadingEmails ? (
+                <CircularProgress size={18} sx={{ color: 'var(--accent-primary)' }} />
+              ) : (
+                <RefreshIcon sx={{ fontSize: 20 }} />
+              )}
+            </IconButton>
             <IconButton className="folder-action-btn" size="small" sx={{ 
               color: 'var(--text-secondary)',
               backgroundColor: 'var(--bg-app)',
