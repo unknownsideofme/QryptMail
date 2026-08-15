@@ -6,7 +6,7 @@ import AttachmentIcon from '@mui/icons-material/Attachment';
 import { useEmails } from '../context/EmailContext';
 
 export default function FolderItem({ email }) {
-  const { selectedEmailId, selectEmail, toggleStar } = useEmails();
+  const { selectedEmailId, selectEmail, toggleStar, isDarkMode } = useEmails();
   const isSelected = selectedEmailId === email.id;
 
   const handleStarClick = (e) => {
@@ -45,7 +45,13 @@ export default function FolderItem({ email }) {
         position: 'relative',
         transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
         mb: 1.5,
-        backgroundColor: 'var(--bg-app)',
+        backgroundColor: isSelected 
+          ? (isDarkMode ? '#1c1c22' : 'rgba(89, 25, 220, 0.05)') 
+          : 'var(--bg-app)',
+        borderLeft: isSelected 
+          ? '4px solid var(--accent-primary)' 
+          : '4px solid transparent',
+        pl: isSelected ? 1.5 : 2,
         boxShadow: isSelected ? 'var(--shadow-inset-sm)' : 'var(--shadow-outset-sm)',
         '&:hover': {
           boxShadow: isSelected ? 'var(--shadow-inset-sm)' : 'var(--shadow-outset)',
@@ -77,7 +83,7 @@ export default function FolderItem({ email }) {
           sx={{
             fontSize: '14px',
             fontWeight: email.isUnread ? 700 : 600,
-            color: '#0f172a',
+            color: 'var(--text-primary)',
             fontFamily: 'var(--font-heading)'
           }}
         >
@@ -101,7 +107,7 @@ export default function FolderItem({ email }) {
         sx={{
           fontSize: '13px',
           fontWeight: email.isUnread ? 700 : 600,
-          color: email.isUnread ? '#0f172a' : '#334155',
+          color: email.isUnread ? 'var(--text-primary)' : 'var(--text-secondary)',
           mb: 0.5,
           whiteSpace: 'nowrap',
           overflow: 'hidden',

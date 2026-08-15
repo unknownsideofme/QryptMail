@@ -51,7 +51,7 @@ export default function AttachmentCard({ attachment, messageId }) {
           sx={{
             fontSize: '13px',
             fontWeight: 600,
-            color: '#0f172a',
+            color: 'var(--text-primary)',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis'

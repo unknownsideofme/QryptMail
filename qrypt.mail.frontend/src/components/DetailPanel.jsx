@@ -104,7 +104,7 @@ export default function DetailPanel() {
         return (
           <ul key={idx} style={{ paddingLeft: '24px', marginBottom: '16px', listStyleType: 'disc' }}>
             {items.map((item, i) => (
-              <li key={i} style={{ marginBottom: '8px', color: '#334155', fontSize: '14px', lineHeight: 1.6 }}>
+              <li key={i} style={{ marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.6 }}>
                 {item}
               </li>
             ))}
@@ -117,7 +117,7 @@ export default function DetailPanel() {
           variant="body1" 
           sx={{ 
             mb: 2, 
-            color: '#334155', 
+            color: 'var(--text-secondary)', 
             fontSize: '14px', 
             lineHeight: 1.6, 
             whiteSpace: 'pre-wrap' 
@@ -282,7 +282,7 @@ export default function DetailPanel() {
             </Avatar>
             <Box className="sender-name-meta" sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box className="sender-name-row" sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
-                <Typography className="sender-name" sx={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>
+                <Typography className="sender-name" sx={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
                   {email.sender}
                 </Typography>
                 {isVerifiedSender && (
@@ -326,7 +326,7 @@ export default function DetailPanel() {
         </Box>
 
         {/* Email Subject Line */}
-        <Typography className="email-detail-subject" sx={{ fontFamily: 'var(--font-heading)', fontSize: '22px', fontWeight: 700, color: '#0f172a', mb: 3, lineHeight: 1.35 }}>
+        <Typography className="email-detail-subject" sx={{ fontFamily: 'var(--font-heading)', fontSize: '22px', fontWeight: 700, color: 'var(--text-primary)', mb: 3, lineHeight: 1.35 }}>
           {email.subject}
         </Typography>
 
@@ -337,8 +337,8 @@ export default function DetailPanel() {
 
         {/* Attachments Section */}
         {email.attachments && email.attachments.length > 0 && (
-          <Box className="attachments-section" sx={{ borderTop: '1px solid #eaedf4', pt: 3, mb: 4 }}>
-            <Typography className="attachments-title" sx={{ fontSize: '14px', fontWeight: 700, color: '#0f172a', mb: 2 }}>
+          <Box className="attachments-section" sx={{ borderTop: '1px solid var(--border-focus)', opacity: 0.8, pt: 3, mb: 4 }}>
+            <Typography className="attachments-title" sx={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', mb: 2 }}>
               Attachment
             </Typography>
             <Box className="attachments-grid" sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 2 }}>

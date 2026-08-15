@@ -220,6 +220,25 @@ export const EmailProvider = ({ children }) => {
 
   const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
 
+  // Theme Management (Dark Mode)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('qrypt_theme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('qrypt_theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('qrypt_theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
   // App Auth state & config
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('qrypt_authenticated') === 'true';
@@ -821,7 +840,9 @@ export const EmailProvider = ({ children }) => {
       logout,
       fetchEmails,
       nextPageToken,
-      downloadAttachment
+      // Theme settings
+      isDarkMode,
+      toggleDarkMode
     }}>
       {children}
     </EmailContext.Provider>

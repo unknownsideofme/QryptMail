@@ -9,10 +9,12 @@ import HelpIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import qryptMailLogo from '../assets/logo.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useEmails } from '../context/EmailContext';
 
 export default function Sidebar({ onComposeClick }) {
-  const { activeFolder, setActiveFolder, getUnreadCount, logout, userEmail, isDemoMode } = useEmails();
+  const { activeFolder, setActiveFolder, getUnreadCount, logout, userEmail, isDemoMode, isDarkMode, toggleDarkMode } = useEmails();
 
   const getInitials = () => {
     if (isDemoMode) return 'DL';
@@ -146,6 +148,20 @@ export default function Sidebar({ onComposeClick }) {
             '&:hover': { color: 'var(--accent-primary)', boxShadow: 'var(--shadow-outset)' }
           }}>
             <HelpIcon sx={{ fontSize: 20 }} />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title={isDarkMode ? "Light Mode" : "Dark Mode"} placement="right" arrow>
+          <IconButton onClick={toggleDarkMode} sx={{ 
+            color: 'var(--text-secondary)',
+            backgroundColor: 'var(--bg-app)',
+            boxShadow: 'var(--shadow-outset-sm)',
+            width: 38,
+            height: 38,
+            borderRadius: '10px',
+            '&:hover': { color: 'var(--accent-primary)', boxShadow: 'var(--shadow-outset)' }
+          }}>
+            {isDarkMode ? <LightModeIcon sx={{ fontSize: 20 }} /> : <DarkModeIcon sx={{ fontSize: 20 }} />}
           </IconButton>
         </Tooltip>
 

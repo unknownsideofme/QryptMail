@@ -6,6 +6,7 @@
 
   /* Neumorphic Soft UI Palette */
   --bg-app: #eef2f6; /* Cohesive, tactile base color */
+  --bg-app-outer: #f5f6fa; /* Outer container color */
   --bg-sidebar: #eef2f6;
   --bg-panel: #eef2f6;
   --bg-detail: #eef2f6;
@@ -40,6 +41,48 @@
   
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Scrollbar custom variables */
+  --scrollbar-shadow-track: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+  --scrollbar-shadow-thumb: 1px 1px 3px #d1d9e6, -1px -1px 3px #ffffff;
+  --scrollbar-thumb-bg: #cbd5e1;
+  --scrollbar-thumb-bg-hover: #94a3b8;
+}
+
+.dark {
+  /* Matte finish dark mode */
+  --bg-app: #121214;
+  --bg-app-outer: #070709; /* Outer deep black background */
+  --bg-sidebar: #121214;
+  --bg-panel: #121214;
+  --bg-detail: #121214;
+  
+  --border-light: transparent;
+  --border-focus: #5925dc;
+  
+  --text-primary: #f8fafc; /* Slate 50 */
+  --text-secondary: #94a3b8; /* Slate 400 */
+  --text-muted: #475569; /* Slate 600 */
+  --text-light: #64748b;
+  
+  --accent-primary: #a78bfa; /* Bright soft purple for contrast */
+  --accent-primary-hover: #c084fc;
+  --accent-light: #2e1065;
+  --accent-blue: #60a5fa;
+  --accent-blue-light: #1e3a8a;
+  
+  /* Neumorphic Box Shadows in Matte Dark Theme (highly contrasted for boundary separation) */
+  --shadow-outset: 8px 8px 16px #030304, -8px -8px 16px #202026;
+  --shadow-inset: inset 6px 6px 12px #030304, inset -6px -6px 12px #202026;
+  --shadow-outset-sm: 4px 4px 8px #030304, -4px -4px 8px #202026;
+  --shadow-inset-sm: inset 3px 3px 6px #030304, inset -3px -3px 6px #202026;
+  --shadow-glow: 0 0 15px rgba(167, 139, 250, 0.15);
+
+  /* Scrollbar custom variables dark */
+  --scrollbar-shadow-track: inset 2px 2px 5px #030304, inset -2px -2px 5px #202026;
+  --scrollbar-shadow-thumb: 1px 1px 3px #030304, -1px -1px 3px #202026;
+  --scrollbar-thumb-bg: #27272a;
+  --scrollbar-thumb-bg-hover: #3f3f46;
 }
 
 * {
@@ -71,18 +114,18 @@ body {
 
 ::-webkit-scrollbar-track {
   background: var(--bg-app);
-  box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+  box-shadow: var(--scrollbar-shadow-track);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--scrollbar-thumb-bg);
   border-radius: 4px;
-  box-shadow: 1px 1px 3px #d1d9e6, -1px -1px 3px #ffffff;
+  box-shadow: var(--scrollbar-shadow-thumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--scrollbar-thumb-bg-hover);
 }
 
 /* Neumorphic Class Utilities */
